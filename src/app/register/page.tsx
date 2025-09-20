@@ -14,13 +14,18 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function RegisterPage() {
   const { toast } = useToast();
   const router = useRouter();
+  const [username, setUsername] = useState('');
 
   const handleCreateAccount = () => {
     // TODO: Implement actual registration logic
+    localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('username', username || 'User');
+    
     toast({
       title: "Registration Complete!",
       description: "Your account has been created successfully. Redirecting...",
@@ -40,7 +45,14 @@ export default function RegisterPage() {
         <CardContent className="grid gap-4">
           <div className="grid gap-2">
             <Label htmlFor="username">Username</Label>
-            <Input id="username" type="text" placeholder="Your Name" required />
+            <Input 
+              id="username" 
+              type="text" 
+              placeholder="Your Name" 
+              required 
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
           </div>
           <div className="grid gap-2">
             <Label htmlFor="email">Email</Label>

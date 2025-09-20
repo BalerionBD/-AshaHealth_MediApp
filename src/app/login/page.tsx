@@ -7,13 +7,19 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function LoginPage() {
   const { toast } = useToast();
   const router = useRouter();
+  const [email, setEmail] = useState('m@example.com');
 
   const handleSignIn = () => {
     // TODO: Implement actual sign-in logic
+    const username = email.split('@')[0];
+    localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('username', username);
+
     toast({
       title: "Signed In Successfully",
       description: "Welcome back! Redirecting you to your dashboard.",
@@ -33,7 +39,14 @@ export default function LoginPage() {
         <CardContent className="grid gap-4">
           <div className="grid gap-2">
             <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" placeholder="m@example.com" required />
+            <Input 
+              id="email" 
+              type="email" 
+              placeholder="m@example.com" 
+              required 
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
           <div className="grid gap-2">
              <div className="flex items-center">
