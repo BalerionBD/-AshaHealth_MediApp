@@ -1,3 +1,5 @@
+'use client';
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -9,9 +11,20 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
 
 export default function RegisterPage() {
+  const { toast } = useToast();
+
+  const handleCreateAccount = () => {
+    // TODO: Implement actual registration logic
+    toast({
+      title: "Registration Complete!",
+      description: "Your account has been created successfully.",
+    });
+  };
+
   return (
     <div className="flex items-center justify-center min-h-[calc(100vh-10rem)]">
       <Card className="w-full max-w-sm">
@@ -36,7 +49,7 @@ export default function RegisterPage() {
           </div>
         </CardContent>
         <CardFooter className="flex flex-col">
-          <Button className="w-full">Create Account</Button>
+          <Button className="w-full" onClick={handleCreateAccount}>Create Account</Button>
           <div className="mt-4 text-center text-sm">
             Already have an account?{' '}
             <Link href="/login" className="underline">

@@ -1,10 +1,23 @@
+'use client';
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
 
 export default function LoginPage() {
+  const { toast } = useToast();
+
+  const handleSignIn = () => {
+    // TODO: Implement actual sign-in logic
+    toast({
+      title: "Signed In Successfully",
+      description: "Welcome back! Redirecting you to your dashboard.",
+    });
+  };
+
   return (
     <div className="flex items-center justify-center min-h-[calc(100vh-10rem)]">
       <Card className="w-full max-w-sm">
@@ -25,7 +38,7 @@ export default function LoginPage() {
           </div>
         </CardContent>
         <CardFooter className="flex flex-col">
-          <Button className="w-full">Sign in</Button>
+          <Button className="w-full" onClick={handleSignIn}>Sign in</Button>
           <div className="mt-4 text-center text-sm">
             Don&apos;t have an account?{' '}
             <Link href="/register" className="underline">
