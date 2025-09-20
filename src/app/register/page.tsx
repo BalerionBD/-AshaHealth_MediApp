@@ -13,16 +13,19 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function RegisterPage() {
   const { toast } = useToast();
+  const router = useRouter();
 
   const handleCreateAccount = () => {
     // TODO: Implement actual registration logic
     toast({
       title: "Registration Complete!",
-      description: "Your account has been created successfully.",
+      description: "Your account has been created successfully. Redirecting...",
     });
+    router.push('/');
   };
 
   return (

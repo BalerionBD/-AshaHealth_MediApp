@@ -6,9 +6,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const { toast } = useToast();
+  const router = useRouter();
 
   const handleSignIn = () => {
     // TODO: Implement actual sign-in logic
@@ -16,6 +18,7 @@ export default function LoginPage() {
       title: "Signed In Successfully",
       description: "Welcome back! Redirecting you to your dashboard.",
     });
+    router.push('/');
   };
 
   return (
