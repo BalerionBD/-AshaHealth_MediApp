@@ -42,7 +42,7 @@ const prompt = ai.definePrompt({
   The output must be only the Mermaid code, without any additional explanations.
   
   **CRITICAL RULES FOR MERMAID SYNTAX:**
-  - **NO NEWLINES IN NODES:** All text within a node (e.g., A["..."]) MUST be on a single line. Do NOT use '\\n' or line breaks inside node labels.
+  - **ABSOLUTELY NO NEWLINES IN NODES:** All text within a node's quotes (e.g., A["..."]) MUST be on a single line. Do NOT use '\\n', line breaks, or any form of multiline text inside node labels. This is the most important rule.
     - **Incorrect:** A["Line 1\\nLine 2"]
     - **Correct:**   A["Line 1 and Line 2"]
   - **QUOTE ALL NODE TEXT:** ALWAYS enclose node text in double quotes. For example: A["Start"], B["Fever (3 days)"]. This is mandatory.
