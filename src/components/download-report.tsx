@@ -12,7 +12,7 @@ export function DownloadReport() {
       // Temporarily remove the download button from the content to be captured
       const downloadButton = reportContent.querySelector('#download-button');
       if (downloadButton) {
-        downloadButton.style.display = 'none';
+        (downloadButton as HTMLElement).style.display = 'none';
       }
 
       html2canvas(reportContent, {
@@ -20,20 +20,31 @@ export function DownloadReport() {
         useCORS: true,
         onclone: (document) => {
           // This ensures mermaid SVGs are visible in the canvas
-          const svgs = document.querySelectorAll('#report-content svg');
-          svgs.forEach(svg => {
-            const serializer = new XMLSerializer();
-            const svgString = serializer.serializeToString(svg);
+          const svgs = Array.from(document.querySelectorAll('#report-content svg'));
+          for (const svg of svgs) {
+            const canvas = document.createElement('canvas');
+            canvas.width = svg.clientWidth * 2;
+            canvas.height = svg.clientHeight * 2;
+            const ctx = canvas.getContext('2d');
+            if (!ctx) continue;
+            
+            const xml = new XMLSerializer().serializeToString(svg);
             const img = new Image();
-            img.src = 'data:image/svg+xml;base64,' + window.btoa(svgString);
-            svg.parentNode?.insertBefore(img, svg);
-            svg.style.display = 'none';
-          });
+            img.src = 'data:image/svg+xml;base64,' + window.btoa(unescape(encodeURIComponent(xml)));
+            
+            img.onload = () => {
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                const dataUrl = canvas.toDataURL('image/png');
+                const newImg = document.createElement('img');
+                newImg.src = dataUrl;
+                svg.parentNode?.replaceChild(newImg, svg);
+            };
+          }
         }
       }).then(canvas => {
         // Restore download button
         if (downloadButton) {
-          downloadButton.style.display = 'inline-flex';
+          (downloadButton as HTMLElement).style.display = 'inline-flex';
         }
 
         const imgData = canvas.toDataURL('image/png');
@@ -68,7 +79,7 @@ export function DownloadReport() {
       }).catch(err => {
         console.error("Error generating PDF:", err);
          if (downloadButton) {
-          downloadButton.style.display = 'inline-flex';
+          (downloadButton as HTMLElement).style.display = 'inline-flex';
         }
       });
     }
