@@ -14,6 +14,16 @@ Asha Health is an intelligent, multilingual health application designed to provi
 - **Symptom History**: A placeholder feature allows for future implementation of symptom logging and tracking over time.
 - **Responsive Design**: Built with a mobile-first approach to ensure a seamless experience on any device.
 
+## 🛠️ Technologies Used
+
+- **Framework**: [Next.js](https://nextjs.org/) (App Router)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **AI/Generative**: [Google's Gemini via Genkit](https://firebase.google.com/docs/genkit)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **UI Components**: [Shadcn/UI](https://ui.shadcn.com/)
+- **PDF Generation**: [jsPDF](https://github.com/parallax/jsPDF) & [html2canvas](https://html2canvas.hertzen.com/)
+- **Deployment**: Ready for [Netlify](https://www.netlify.com/) or [Vercel](https://vercel.com/)
+
 ## 🚀 Getting Started
 
 Follow these instructions to set up and run the project on your local machine for development and testing purposes.
@@ -58,7 +68,7 @@ Follow these instructions to set up and run the project on your local machine fo
 
 ## 🧪 Sample Test Cases
 
-You can use the following symptom descriptions to test the AI's analysis capabilities:
+You can use the following symptom descriptions to a test the AI's analysis capabilities:
 
 - **Possible Migraine:**
   > "I have a throbbing headache on one side of my head, and I feel nauseous and sensitive to light. The pain gets worse when I move around."
