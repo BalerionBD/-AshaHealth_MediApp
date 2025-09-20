@@ -2,7 +2,7 @@
   command = "next build"
   publish = ".next"
 
+# Set the timeout for all serverless functions (including Next.js API routes/server actions)
+# to 120 seconds to allow for longer-running AI operations.
 [functions]
-  # Set the timeout for all serverless functions (including Next.js API routes/server actions)
-  # to 120 seconds to allow for longer-running AI operations.
   timeout = 120
