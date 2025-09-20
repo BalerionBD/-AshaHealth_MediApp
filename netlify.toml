@@ -3,7 +3,6 @@
   publish = ".next"
 
 [functions]
-  # Increase the timeout for all serverless functions
-  # to allow for longer-running AI operations.
-  # Netlify's default is 10 seconds, which can be too short.
+  # Set the timeout for all serverless functions (including Next.js API routes/server actions)
+  # to 120 seconds to allow for longer-running AI operations.
   timeout = 120
