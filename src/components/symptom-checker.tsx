@@ -87,6 +87,13 @@ export function SymptomChecker() {
                     <SelectItem value="en">English</SelectItem>
                     <SelectItem value="hi">हिन्दी (Hindi)</SelectItem>
                     <SelectItem value="bn">বাংলা (Bengali)</SelectItem>
+                    <SelectItem value="te">తెలుగు (Telugu)</SelectItem>
+                    <SelectItem value="ta">தமிழ் (Tamil)</SelectItem>
+                    <SelectItem value="mr">मराठी (Marathi)</SelectItem>
+                    <SelectItem value="gu">ગુજરાતી (Gujarati)</SelectItem>
+                    <SelectItem value="ml">മലയാളം (Malayalam)</SelectItem>
+                    <SelectItem value="or">ଓଡ଼ିଆ (Odia)</SelectItem>
+                    <SelectItem value="pa">ਪੰਜਾਬੀ (Punjabi)</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
