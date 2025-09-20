@@ -10,5 +10,4 @@
 # We set a global timeout for all functions to prevent them from
 # being terminated prematurely, which is common for AI-related tasks.
 [functions]
-  # Set the timeout to 120 seconds for all serverless functions
   timeout = 120
