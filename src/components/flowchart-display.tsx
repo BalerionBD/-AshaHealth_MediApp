@@ -35,18 +35,24 @@ export function FlowchartDisplay({ flowchart }: FlowchartDisplayProps) {
   useEffect(() => {
     let isMounted = true;
     const renderFlowchart = async () => {
+      setError(null);
+      setSvg(null);
+      if (!flowchart.flowchartCode) {
+        setError("No flowchart code was generated.");
+        return;
+      }
       try {
-        if (flowchart.flowchartCode) {
-          const { svg } = await mermaid.render(graphId, flowchart.flowchartCode);
-          if (isMounted) {
-            setSvg(svg);
-            setError(null);
-          }
+        // This is a workaround to prevent mermaid from throwing an error that can't be caught.
+        // See: https://github.com/mermaid-js/mermaid/issues/4323
+        await mermaid.parse(flowchart.flowchartCode);
+        const { svg } = await mermaid.render(graphId, flowchart.flowchartCode);
+        if (isMounted) {
+          setSvg(svg);
         }
       } catch (e) {
         console.error(e);
         if (isMounted) {
-          setError('Could not render flowchart.');
+          setError('Could not render flowchart. The generated code may be invalid.');
         }
       }
     };
@@ -59,7 +65,7 @@ export function FlowchartDisplay({ flowchart }: FlowchartDisplayProps) {
   return (
     <div>
       <h3 className="text-lg font-semibold text-foreground mb-2">Symptom Progression Flowchart</h3>
-      <div className="rounded-lg border bg-card p-4 overflow-auto">
+      <div className="rounded-lg border bg-card p-4 overflow-auto min-h-[150px]">
         {svg ? (
           <div dangerouslySetInnerHTML={{ __html: svg }} />
         ) : error ? (
@@ -83,7 +89,7 @@ export function FlowchartDisplay({ flowchart }: FlowchartDisplayProps) {
         </CollapsibleTrigger>
         <CollapsibleContent>
           <pre className="mt-2 rounded-md bg-muted p-4 overflow-x-auto">
-            <code className="font-code text-sm text-foreground">{flowchart.flowchartCode}</code>
+            <code className="font-code text-sm text-foreground">{flowchart.flowchartCode || "No flowchart code available."}</code>
           </pre>
         </CollapsibleContent>
       </Collapsible>

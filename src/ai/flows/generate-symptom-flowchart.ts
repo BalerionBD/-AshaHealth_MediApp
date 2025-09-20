@@ -40,6 +40,8 @@ const prompt = ai.definePrompt({
   generate a Mermaid code flowchart that visually represents the potential progression of the symptoms and related information.
   Make the flowchart readable and easy to understand for users with no medical background.
   The output should be the mermaid code only, without any additional explanations.
+  Ensure node text containing special characters like parentheses is enclosed in double quotes.
+  For example: A["Node with (parentheses)"]
   `,
 });
 
