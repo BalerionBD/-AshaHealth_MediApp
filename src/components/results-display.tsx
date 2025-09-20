@@ -10,6 +10,9 @@ interface ResultsDisplayProps {
 }
 
 export function ResultsDisplay({ analysis }: ResultsDisplayProps) {
+    const showGuidance = analysis.guidance && (analysis.guidance.possibleCauses !== 'N/A');
+    const showFlowchart = analysis.flowchart && analysis.flowchart.flowchartCode;
+
     return (
         <div className="space-y-8">
             <UrgencyDisplay urgency={analysis.urgency} />
@@ -24,13 +27,19 @@ export function ResultsDisplay({ analysis }: ResultsDisplayProps) {
                         <p className="text-muted-foreground">{analysis.summary.summary}</p>
                     </div>
 
-                    <Separator />
+                    {showGuidance && (
+                        <>
+                            <Separator />
+                            <EducationDisplay guidance={analysis.guidance} />
+                        </>
+                    )}
                     
-                    <EducationDisplay guidance={analysis.guidance} />
-                    
-                    <Separator />
-
-                    <FlowchartDisplay flowchart={analysis.flowchart} />
+                    {showFlowchart && (
+                       <>
+                        <Separator />
+                        <FlowchartDisplay flowchart={analysis.flowchart} />
+                       </>
+                    )}
                 </CardContent>
             </Card>
         </div>
