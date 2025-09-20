@@ -1,6 +1,7 @@
 'use client';
 
-import { useFormState, useFormStatus } from 'react-dom';
+import { useActionState } from 'react';
+import { useFormStatus } from 'react-dom';
 import { getHealthAnalysis } from '@/app/actions';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -30,7 +31,7 @@ function SubmitButton() {
 }
 
 export function SymptomChecker() {
-  const [state, formAction] = useFormState(getHealthAnalysis, null);
+  const [state, formAction] = useActionState(getHealthAnalysis, null);
   const [symptomText, setSymptomText] = useState('');
 
   const handleTranscriptChange = useCallback((transcript: string) => {
