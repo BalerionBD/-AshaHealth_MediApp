@@ -39,13 +39,13 @@ const prompt = ai.definePrompt({
   Based on the following symptoms: {{{symptoms}}},
   generate a Mermaid code flowchart that visually represents the potential progression of the symptoms and related information.
   Make the flowchart readable and easy to understand for users with no medical background.
-  The output should be the mermaid code only, without any additional explanations.
+  The output must be only the Mermaid code, without any additional explanations.
   
   **CRITICAL RULES FOR MERMAID SYNTAX:**
-  - **NO NEWLINES IN NODES:** All text within a node (e.g., A["..."]) MUST be on a single line. Do NOT use '\n' or line breaks inside node labels.
-    - **Incorrect:** A["Line 1\nLine 2"]
+  - **NO NEWLINES IN NODES:** All text within a node (e.g., A["..."]) MUST be on a single line. Do NOT use '\\n' or line breaks inside node labels.
+    - **Incorrect:** A["Line 1\\nLine 2"]
     - **Correct:**   A["Line 1 and Line 2"]
-  - **QUOTE SPECIAL CHARACTERS:** If node text contains parentheses, colons, or other special characters, it MUST be enclosed in double quotes. For example: A["Node with (special chars): Text"]
+  - **QUOTE ALL NODE TEXT:** ALWAYS enclose node text in double quotes. For example: A["Start"], B["Fever (3 days)"]. This is mandatory.
   - **NO MARKDOWN:** Do not use any markdown formatting like bolding or italics within nodes.
   `,
 });
