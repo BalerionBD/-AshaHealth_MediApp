@@ -41,10 +41,12 @@ const prompt = ai.definePrompt({
   Make the flowchart readable and easy to understand for users with no medical background.
   The output should be the mermaid code only, without any additional explanations.
   
-  IMPORTANT:
-  - Node text must be on a single line. Do NOT include newlines inside node text.
-  - Ensure any node text containing special characters (like parentheses, colons, etc.) is enclosed in double quotes. For example: A["Node with (special chars): Text"]
-  - Do not use markdown in nodes.
+  **CRITICAL RULES FOR MERMAID SYNTAX:**
+  - **NO NEWLINES IN NODES:** All text within a node (e.g., A["..."]) MUST be on a single line. Do NOT use '\n' or line breaks inside node labels.
+    - **Incorrect:** A["Line 1\nLine 2"]
+    - **Correct:**   A["Line 1 and Line 2"]
+  - **QUOTE SPECIAL CHARACTERS:** If node text contains parentheses, colons, or other special characters, it MUST be enclosed in double quotes. For example: A["Node with (special chars): Text"]
+  - **NO MARKDOWN:** Do not use any markdown formatting like bolding or italics within nodes.
   `,
 });
 
