@@ -9,7 +9,7 @@
 
 # The [functions] block configures Netlify Functions.
 # The wildcard "*" applies these settings to all functions.
-[functions]
+[functions."*"]
   # Sets the timeout for serverless functions.
   # The default is 10 seconds. We increase it to 120 seconds
   # to allow for longer-running AI operations.
