@@ -1,5 +1,6 @@
 import { HeartPulse } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import Link from 'next/link';
+import { Button } from './ui/button';
 
 export function Header() {
   return (
@@ -7,9 +8,17 @@ export function Header() {
       <div className="container flex h-14 items-center">
         <div className="flex items-center space-x-2">
           <HeartPulse className="h-6 w-6 text-primary" />
-          <span className="font-headline text-xl font-bold tracking-tight text-foreground">
+          <Link href="/" className="font-headline text-xl font-bold tracking-tight text-foreground">
             Asha Health
-          </span>
+          </Link>
+        </div>
+        <div className="ml-auto flex items-center space-x-2">
+          <Button variant="ghost" asChild>
+            <Link href="/login">Log In</Link>
+          </Button>
+          <Button asChild>
+            <Link href="/register">Register</Link>
+          </Button>
         </div>
       </div>
     </header>
